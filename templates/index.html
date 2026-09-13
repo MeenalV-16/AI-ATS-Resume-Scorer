@@ -1,0 +1,314 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    #to link the css file 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>RESUME SCORE</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="resume" accept="application/pdf" required><br>
+        <textarea name="job_desc" rows="4" placeholder="Enter job description" required></textarea><br>
+        <button type="submit">Check Score</button>
+    </form>
+    {% if score is not none %}
+    <h3 id="scoretext">Match Score : {{ score }}%</h3>
+    {% endif %}
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Matcher</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h2>Resume Matcher</h2>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="resume" accept="application/pdf" required><br>
+        <textarea name="job_desc" rows="4" placeholder="Enter Job Description" required></textarea><br>
+        <button type="submit">Check Match</button>
+        <button type="submit" id="Refreshbtn">Refresh</button>
+    </form>
+
+    {% if score is not none %}
+        <h3  id="scoreText">Match Score: {{ score }}%</h3>
+    {% endif %}
+
+    <script>
+        let le = document.getElementById('Refreshbtn')
+        le.addEventListener('click',function(){
+            document.querySelector("form").reset();
+            let st = document.getElementById("scoreText");
+            if (st) {
+                st.style.display = "none"; 
+            }
+        })
+    
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Matcher</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+
+        <div class="header">
+
+            <h1>AI Resume Matcher</h1>
+
+            <p>
+                Analyze how well your resume matches a job description
+                using Natural Language Processing.
+            </p>
+
+        </div>
+
+
+        <!-- Main Form -->
+
+        <div class="card">
+
+            <form action="/"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                <!-- Resume -->
+
+                <label for="resume">
+                    Upload Resume
+                </label>
+
+                <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    accept="application/pdf"
+                    required
+                >
+
+                <p class="help-text">
+                    Upload your resume in PDF format.
+                </p>
+
+
+                <!-- Job Description -->
+
+                <label for="job_desc">
+                    Job Description
+                </label>
+
+                <textarea
+                    id="job_desc"
+                    name="job_desc"
+                    rows="8"
+                    placeholder="Paste the job description here..."
+                    required
+                ></textarea>
+
+
+                <!-- Buttons -->
+
+                <div class="buttons">
+
+                    <button type="submit"
+                            class="check-btn">
+                        Analyze Resume
+                    </button>
+
+                    <button type="button"
+                            id="refreshBtn"
+                            class="refresh-btn">
+                        Reset
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <!-- Error -->
+
+            {% if error %}
+
+                <div class="error">
+                    {{ error }}
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- Results -->
+
+        {% if score is not none %}
+
+        <div class="results">
+
+            <h2>Resume Analysis</h2>
+
+
+            <!-- Score -->
+
+            <div class="score-card">
+
+                <div class="score">
+
+                    {{ score }}%
+
+                </div>
+
+                <div class="score-message">
+
+                    {{ message }}
+
+                </div>
+
+                <p>
+                    Semantic similarity between your resume
+                    and the job description.
+                </p>
+
+            </div>
+
+
+            <!-- Skills -->
+
+            <div class="skills-container">
+
+
+                <!-- Matched Skills -->
+
+                <div class="skill-card">
+
+                    <h3>
+                        Matched Skills
+                    </h3>
+
+                    {% if matched_skills %}
+
+                        <div class="skill-list">
+
+                            {% for skill in matched_skills %}
+
+                                <span class="skill matched">
+                                    {{ skill }}
+                                </span>
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+
+                        <p>
+                            No matching skills detected.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Missing Skills -->
+
+                <div class="skill-card">
+
+                    <h3>
+                        Missing Skills
+                    </h3>
+
+                    {% if missing_skills %}
+
+                        <div class="skill-list">
+
+                            {% for skill in missing_skills %}
+
+                                <span class="skill missing">
+                                    {{ skill }}
+                                </span>
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+
+                        <p>
+                            No missing skills detected.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        const refreshBtn =
+            document.getElementById("refreshBtn");
+
+        refreshBtn.addEventListener("click", function () {
+
+            document.querySelector("form").reset();
+
+            const results =
+                document.querySelector(".results");
+
+            const error =
+                document.querySelector(".error");
+
+            if (results) {
+                results.style.display = "none";
+            }
+
+            if (error) {
+                error.style.display = "none";
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

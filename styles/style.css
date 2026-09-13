@@ -1,0 +1,276 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #222;
+    min-height: 100vh;
+}
+
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 0;
+}
+
+
+/* Header */
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+.header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+
+.header p {
+    color: #666;
+    font-size: 16px;
+}
+
+
+/* Cards */
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+
+/* Labels */
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    margin-top: 15px;
+}
+
+
+/* File input */
+
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fafafa;
+}
+
+
+.help-text {
+    font-size: 13px;
+    color: #777;
+    margin-top: 5px;
+}
+
+
+/* Textarea */
+
+textarea {
+    width: 100%;
+    padding: 14px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+    font-size: 15px;
+}
+
+
+textarea:focus,
+input:focus {
+    outline: none;
+    border-color: #4f46e5;
+}
+
+
+/* Buttons */
+
+.buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+.check-btn {
+    background: #4f46e5;
+    color: white;
+}
+
+
+.check-btn:hover {
+    background: #3730a3;
+}
+
+
+.refresh-btn {
+    background: #e5e7eb;
+    color: #333;
+}
+
+
+.refresh-btn:hover {
+    background: #d1d5db;
+}
+
+
+/* Error */
+
+.error {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 6px;
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+
+/* Results */
+
+.results {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+
+.results h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+
+/* Score */
+
+.score-card {
+    text-align: center;
+    padding: 25px;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+
+.score {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+
+.score-message {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+
+.score-card p {
+    color: #666;
+    margin-top: 10px;
+}
+
+
+/* Skills */
+
+.skills-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+
+.skill-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+.skill-card h3 {
+    margin-bottom: 15px;
+}
+
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+
+.skill {
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+
+.matched {
+    background: #dcfce7;
+    color: #166534;
+}
+
+
+.missing {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .container {
+        width: 94%;
+    }
+
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .buttons {
+        flex-direction: column;
+    }
+
+
+    button {
+        width: 100%;
+    }
+
+}
